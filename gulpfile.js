@@ -19,53 +19,49 @@ var del = require('del');
 
 
 /*
-  Js
+ Js
  */
 
 var concat = require('gulp-concat');
 
 /*
+ Assumption:
+ There are 3 main folders  src, vendor and spec
+ src/js - all your app specific files are kept
+ vendor/js - all your third party modules are kept
+ spec - all your spec files are kept
+
  Task
- 1. create a folder "src"
- 2. create  couple of files file-1,file-2 in the folder "src"
- 3. create a folder "dist" , if not exists
- 4. delete any contents in folder "dist"
- 5. move file-1 to dist
+
+ Development:
+ ------------------------------------------
+ Concat all vendor files
+ Concat all src files
+ move all files to "development" as app.js
+
+ what should happen during development mode?
+ -------------------------------------------
+ watch for changes in src/vendor/spec folders
+
+ run jsHint during development
+ run code coverage during development
+ run specs during development
+
+ Production/dist
+ -------------------------------------------
+ Concat vendor and src files
+ Uglify app.js
+ move to "dist/js" as app.js
+
+ what should happen during development mode?
+ -------------------------------------------
+ on demand execute the following task
+
+ run jsHint
+ run code coverage
+ run specs
+
  */
-
-function createFolder(folderName) {
-    fs.mkdir(folderName, 0777, function (err) {
-        if (err && err.code === 'EEXIST') {
-            console.log(folderName + '-exists');
-            return;
-        }
-        console.log(folderName + '-created');
-    });
-}
-
-gulp.task('create-folders', function () {
-    gutil.log(gutil.colors.white("creating src/dist folder"));
-    ["src", "dist"].forEach(createFolder);
-});
-
-gulp.task('delete-folders', function () {
-    gutil.log(gutil.colors.white("deleting src/dist folder"));
-
-    del(['dist'], function (err) {
-        console.log("folder deleted");
-    });
-});
-
-gulp.task('move-files', function () {
-    gulp.src('src/*.js')
-        .pipe(ignore.exclude(/file-2.js/))
-        .pipe(gulp.dest('dist/'))
-        .on('error', gutil.log);
-});
-
-gulp.task('default', function () {
-    console.log('gulp default task');
-});
 
 
 

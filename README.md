@@ -115,7 +115,10 @@ if you run gulp, you should see the following..
     [10:50:32] Finished 'default' after 37 μ
 
 
+Tasks to do
+-----------------------------------------------------
 
+1. Javascript related task checkout branch js_modules
 
 
 
