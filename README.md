@@ -27,7 +27,7 @@ if npm throws an error due to sudo access,run the following command
 Gulp Basics
 ------------
 
-#Whats is gulp?
+Whats is gulp?
 
 Gulp is a streaming build system or  build orchestration tool.
 
