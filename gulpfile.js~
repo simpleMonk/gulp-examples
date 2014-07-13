@@ -1,0 +1,12 @@
+var gulp=require('gulp');
+
+
+gulp.task('default',['my-custom-task'],function(){
+   console.log('gulp default task');
+});
+
+gulp.task('my-custom-task',function(){
+  console.log('my custom task');
+});
+
+
